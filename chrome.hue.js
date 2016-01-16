@@ -4,4 +4,5 @@ chrome.runtime.onMessageExternal.addListener(
 
       console.log("Request: ", request);
 
+      sendResponse({ status: "OK" });
   });

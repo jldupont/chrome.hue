@@ -1,0 +1,31 @@
+<html>
+  <head>
+  </head>
+  <body>
+    Simple Test of Chrome.Hue Extension
+
+    <button id="btn1">Send</button>
+
+    <script>
+
+    var btn1 = document.getElementById("btn1");
+
+    btn1.addEventListener("click", function(){
+      sendTest();
+    });
+
+    function sendTest() {
+
+      chrome.runtime.sendMessage("okcbadfdlhldjgkbafhnkcpofabckgde", {type: "Test Message"},
+
+        function(response) {
+            console.log(response, chrome.runtime.lastError);
+        });
+
+    }
+
+    </script>
+
+
+  </body>
+</html>

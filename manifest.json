@@ -3,12 +3,15 @@
 
   "name": "Chrome.Hue",
   "description": "This extension is used to communicate locally with Philips Hue hubs.",
-  "version": "0.1",
+  "version": "0.1"
 
+  ,"background": {
+      "scripts": ["chrome.hue.js"]
+    },
   "permissions": [
   ]
 
-  "externally_connectable": {
+  ,"externally_connectable": {
     "matches": ["*://*.jldupont.com/*"
       , "*://*.systemical.com/*"
     ]
