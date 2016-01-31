@@ -1,5 +1,6 @@
 <html>
   <head>
+    <script src='chrome.hue.lib.js'></script>
   </head>
   <body>
     Simple Test of Chrome.Hue Extension
@@ -8,24 +9,33 @@
 
     <script>
 
-    var btn1 = document.getElementById("btn1");
+      var btn1 = document.getElementById("btn1");
 
-    btn1.addEventListener("click", function(){
-      sendTest();
-    });
+      btn1.addEventListener("click", function(){
+        sendTest();
+      });
 
-    function sendTest() {
+      var hue = new HueRequester();
 
-      chrome.runtime.sendMessage("okcbadfdlhldjgkbafhnkcpofabckgde", {type: "Test Message"},
+      function sendTest() {
 
-        function(response) {
-            console.log(response, chrome.runtime.lastError);
-        });
+        hue.makeRequest({type: 'request', path: '/api', method: 'GET', ip: '192.168.1.131'},
+          function(response) {
+              console.log('Response: ', response);
+          });
 
-    }
+        /*
+        chrome.runtime.sendMessage("okcbadfdlhldjgkbafhnkcpofabckgde",
+          {path: '/api', method: 'GET', ip: '192.168.1.131'},
+
+          function(response) {
+              console.log(response, chrome.runtime.lastError);
+          });
+          */
+
+      }
 
     </script>
-
 
   </body>
 </html>
