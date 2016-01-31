@@ -12,5 +12,12 @@
   ],
   "main": "chrome.hue.lib.js",
   "files": ["chrome.hue.lib.js"],
-  "license": "MIT"
+  "license": "MIT",
+  "ignore": [
+    "chrome.hue.js",
+    "*.json",
+    "*.md",
+    "test_server",
+    "*.html"
+  ]
 }
