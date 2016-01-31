@@ -8,15 +8,9 @@
   "description": "Very simple library to access local Philips Hue hubs through a Chrome extension",
   "keywords": [
     "chrome-extension",
-    "philips-hue",
+    "philips-hue"
   ],
   "main": "chrome.hue.lib.js",
   "files": ["chrome.hue.lib.js"],
-  "license": "MIT",
-  "ignore": [
-  ],
-  "dependencies": {
-  },
-	"devDependencies": {
-  }
+  "license": "MIT"
 }
