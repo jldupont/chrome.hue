@@ -2,7 +2,7 @@
   "manifest_version": 2,
 
   "name": "Chrome.Hue",
-  "description": "This extension is used to communicate locally with Philips Hue hubs.",
+  "description": "just some tests",
   "version": "0.1"
 
   ,"background": {

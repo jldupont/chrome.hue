@@ -1,5 +1,3 @@
-# Chrome.Hue
-
-Chrome Extension for communications with local Philips Hue Hub.
+# Chrome Extension tests
 
 Extension id: okcbadfdlhldjgkbafhnkcpofabckgde
