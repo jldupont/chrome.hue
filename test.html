@@ -21,21 +21,16 @@
         console.log('Trapped: ', msg);
       });
 
+      hue.setDefaultRequestParameters({
+        ip: '192.168.1.131'
+      });
+
       function sendTest() {
 
-        hue.makeRequest({type: 'request', path: '/api/b8d31e6a799a12348a35a078b98a5/', method: 'GET', ip: '192.168.1.131'},
+        hue.makeRequest({path: '/api/b8d31e6a799a12348a35a078b98a5/'},
           function(response) {
               console.log('Response: ', response);
           });
-
-        /*
-        chrome.runtime.sendMessage("okcbadfdlhldjgkbafhnkcpofabckgde",
-          {path: '/api', method: 'GET', ip: '192.168.1.131'},
-
-          function(response) {
-              console.log(response, chrome.runtime.lastError);
-          });
-          */
 
       }
 

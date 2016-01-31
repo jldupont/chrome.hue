@@ -8,10 +8,15 @@
   var extensionId = 'okcbadfdlhldjgkbafhnkcpofabckgde';
 
   function HueRequester() {
+    this._defaultRequestParams = {};
   };
 
   HueRequester.prototype.setDefaultErrorHandler = function(cb) {
       this._defaultErrorHandler = cb;
+  };
+
+  HueRequester.prototype.setDefaultRequestParameters = function(params) {
+      this._defaultRequestParams = params;
   };
 
   /**
@@ -27,21 +32,30 @@
    *
    *    `errorHandler` is called when the extension can not be reached.
    */
-  HueRequester.prototype.makeRequest = function(msg, responseHandler, errorHandler) {
+  HueRequester.prototype.makeRequest = function(request, responseHandler, errorHandler) {
 
     var that = this;
-    
-    chrome.runtime.sendMessage(extensionId, msg, function(response) {
+
+    var computedRequest = {};
+
+    for (var prop in this._defaultRequestParams) {
+      computedRequest[prop] = request[prop] || this._defaultRequestParams[prop];
+    }
+    for (var prop in request) {
+      computedRequest[prop] = request[prop];
+    }
+
+    chrome.runtime.sendMessage(extensionId, computedRequest, function(response) {
 
       if (response === undefined) {
         if (errorHandler) {
-          return errorHandler(msg);
+          return errorHandler(computedRequest);
         }
         if (that._defaultErrorHandler) {
-          return that._defaultErrorHandler(msg);
+          return that._defaultErrorHandler(computedRequest);
         }
       }
-      responseHandler(response, msg);
+      responseHandler(response, computedRequest);
     });
 
   };
