@@ -2,15 +2,12 @@
   "manifest_version": 2,
 
   "name": "Chrome.Hue",
-  "description": "just some tests",
+  "description": "Communication with LAN local Philips Hue hub",
   "version": "0.1"
 
   ,"background": {
       "scripts": ["chrome.hue.js"]
-    },
-  "permissions": [
-  ]
-
+    }
   ,"externally_connectable": {
     "matches": ["*://*.jldupont.com/*"
       , "*://*.systemical.com/*"
