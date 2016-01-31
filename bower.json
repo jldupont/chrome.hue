@@ -1,6 +1,6 @@
 {
   "name": "chrome.hue.lib.js",
-  "version": "0.2",
+  "version": "0.1.0",
   "homepage": "https://github.com/jldupont/chrome.hue.js",
   "authors": [
     "Jean-Lou Dupont <github@jldupont.com>"
