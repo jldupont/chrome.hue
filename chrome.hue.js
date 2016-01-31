@@ -11,18 +11,18 @@
  *     ip, method, path, access, body, timeout
  *   }
  *
- *
  * @author: Jean-Lou Dupont
  */
 
 chrome.runtime.onMessageExternal.addListener(function(request, _sender, sendResponse) {
 
+  var ip      = request.ip;
   var timeout = request.timeout || 2000;
   var path    = request.path    || '/api';
-  var ip      = request.ip;
   var method  = request.method  || 'GET';
   var body    = request.body    || '{}';
   var scheme  = request.scheme  || 'http';
+
   var url     = scheme + '://' + ip + path;
 
   var xhr = new XMLHttpRequest();
@@ -34,11 +34,17 @@ chrome.runtime.onMessageExternal.addListener(function(request, _sender, sendResp
   };
 
   xhr.onload = function(e) {
-    sendResponse({ status: 'LOAD', msg: xhr.responseText });
+    var rep;
+    try {
+      rep = JSON.parse(xhr.responseText);
+      sendResponse({ status: 'LOAD', msg: rep });
+    } catch(e) {
+      sendResponse({ status: 'ERROR', msg: 'not JSON' });
+    }
   };
 
   xhr.onerror = function(e) {
-    sendResponse({ status: 'ERROR', msg: e.target.status });
+    sendResponse({ status: 'ERROR', code: e.target.status });
   };
 
   try {

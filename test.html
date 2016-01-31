@@ -17,9 +17,13 @@
 
       var hue = new HueRequester();
 
+      hue.setDefaultErrorHandler(function(msg) {
+        console.log('Trapped: ', msg);
+      });
+
       function sendTest() {
 
-        hue.makeRequest({type: 'request', path: '/api', method: 'GET', ip: '192.168.1.131'},
+        hue.makeRequest({type: 'request', path: '/api/b8d31e6a799a12348a35a078b98a5/', method: 'GET', ip: '192.168.1.131'},
           function(response) {
               console.log('Response: ', response);
           });
