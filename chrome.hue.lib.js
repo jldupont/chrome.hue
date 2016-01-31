@@ -19,6 +19,17 @@
       this._defaultRequestParams = params;
   };
 
+  HueRequester.prototype.isExtensionPresent = function(cb) {
+
+    chrome.runtime.sendMessage(extensionId, {msg: 'ping'}, function(response) {
+
+      response = response || {};
+      cb(response.msg == 'pong');
+      
+    });
+
+  };
+
   /**
    *  makeRequest(msg, responseHandler [,errorHandler])
    *  where:

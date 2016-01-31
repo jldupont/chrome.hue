@@ -16,6 +16,10 @@
 
 chrome.runtime.onMessageExternal.addListener(function(request, _sender, sendResponse) {
 
+  if (request)
+    if (request.msg == 'ping')
+      return sendResponse({msg: 'pong'});
+
   var ip      = request.ip;
   var timeout = request.timeout || 2000;
   var path    = request.path    || '/api';

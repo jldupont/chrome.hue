@@ -6,14 +6,21 @@
     Simple Test of Chrome.Hue Extension
 
     <button id="btn1">Send</button>
+    <button id="btn2">Ping</button>
 
     <script>
 
       var btn1 = document.getElementById("btn1");
+      var btn2 = document.getElementById("btn2");
 
       btn1.addEventListener("click", function(){
         sendTest();
       });
+
+      btn2.addEventListener("click", function(){
+        sendPing();
+      });
+
 
       var hue = new HueRequester();
 
@@ -31,6 +38,14 @@
           function(response) {
               console.log('Response: ', response);
           });
+
+      }
+
+      function sendPing() {
+
+        hue.isExtensionPresent(function(response) {
+          console.log('Present ? ', response);
+        });
 
       }
 
