@@ -9,6 +9,7 @@
 
   function HueRequester() {
     this._defaultRequestParams = {};
+    this.debug = false;
   };
 
   HueRequester.prototype.setDefaultErrorHandler = function(cb) {
@@ -25,7 +26,7 @@
 
       response = response || {};
       cb(response.msg == 'pong');
-      
+
     });
 
   };
@@ -45,8 +46,6 @@
    */
   HueRequester.prototype.makeRequest = function(request, responseHandler, errorHandler) {
 
-    var that = this;
-
     var computedRequest = {};
 
     for (var prop in this._defaultRequestParams) {
@@ -56,7 +55,14 @@
       computedRequest[prop] = request[prop];
     }
 
+    var that = this;
+
     chrome.runtime.sendMessage(extensionId, computedRequest, function(response) {
+
+      if (that.debug) {
+        console.debug('chrome.hue.lib: makeRequest: request:  ', computedRequest);
+        console.debug('chrome.hue.lib: makeRequest: response: ', response);
+      }
 
       if (response === undefined) {
         if (errorHandler) {

@@ -3,7 +3,7 @@
 
   "name": "Chrome.Hue",
   "description": "Communication with LAN local Philips Hue hub",
-  "version": "0.1"
+  "version": "0.2.0"
 
   ,"background": {
       "scripts": ["chrome.hue.js"]
@@ -11,6 +11,7 @@
   ,"externally_connectable": {
     "matches": ["*://*.jldupont.com/*"
       , "*://*.systemical.com/*"
+      , "*://*.c9users.io/*"
     ]
   }
 
